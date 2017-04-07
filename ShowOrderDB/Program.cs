@@ -11,24 +11,25 @@ namespace ShowOrderDB
         static void Main(string[] args)
         {
 
-            NorthwindContext orderModel = new NorthwindContext();
+            //NorthwindContext orderModel = new NorthwindContext();
             //var s = orderModel.Orders.Where(u => u.OrderID == 10248).Select(u => u.ShipName);
             using (var db = new NorthwindContext())
             {
-                var query = (from b in db.Orders                            
-                            select b).Take(20);
+                //var query = (from b in db.Orders                            
+                //            select b).Take(20);
                 //var query = (from b in db.Orders
                 //             orderby b.OrderID descending
                 //             select b).Take(20);
+                var bestellungen = db.Bestellungen.Where(u => u.OrderID > 500);
 
 
                
 
 
                 Console.WriteLine("First 20 shipname in the database:");
-                foreach (var item in query)
+                foreach (var item in bestellungen)
                 {
-                    Console.WriteLine( item.ShipName);
+                    Console.WriteLine( item.CustomerID);
                 }
                 
             Console.ReadLine();

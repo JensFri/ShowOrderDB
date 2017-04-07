@@ -13,6 +13,7 @@ namespace ShowOrderDB
         }
 
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Bestellungen> Bestellungen { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -24,6 +25,9 @@ namespace ShowOrderDB
             modelBuilder.Entity<Order>()
                 .Property(e => e.Freight)
                 .HasPrecision(19, 4);
+
+            modelBuilder.Entity<Bestellungen>().ToTable("Orders").HasKey(u=>u.CustomerID);
+            
         }
     }
 }
